@@ -1,0 +1,106 @@
+[timestep]
+fixed = true
+max = 0.0004
+min = 0.0004
+[dfsph]
+minDensitySolverIterations = 2
+minDivergenceSolverIterations = 2
+maxDensitySolverIterations = 256
+maxDivergenceSolverIterations = 8
+densityThreshold = 1e-3
+divergenceThreshold = 1e-2
+divergenceSolver = false
+backgroundPressure = false
+relaxedJacobiOmega = 0.5
+
+[domain]
+min = [-2, -2]
+max = [2, 2]
+adjustParticle = true
+adjustDomain = true
+
+[emitter.fluidR]
+fillDomain = false
+min = [0.5,-1.5]
+max = [1.5,-0.5]
+velocity = [ -1.0, -0.5]
+adjust = false
+shape = 'sphere'
+
+[emitter.fluidL]
+fillDomain = false
+min = [-1.5,-1.5]
+max = [-0.5,-0.5]
+velocity = [ 1.0, 0.5]
+adjust = false
+shape = 'sphere'
+
+[emitter2.fluid]
+fillDomain = false
+min = [-0.5,-0.5]
+max = [0.5,0.5]
+velocity = [ 0.0, 0.0]
+adjust = false
+shape = 'sphere'
+
+[emitter2.fluidBulk]
+fillDomain = false
+min = [-2,-2]
+max = [-1.5, -1.5]
+velocity = [ 0.0, 0.0]
+adjust = true
+
+[emitter2.damBreak]
+fillDomain = false
+min = [-2.0,-2.0]
+max = [-1.0, -1.0]
+velocity = [ 0.0, 0.0]
+adjust = true
+
+[compute]
+device='cpu'
+
+[particle]
+radius = 0.025
+
+[gravity2]
+magnitude = 0
+
+[fluid]
+c0 = 100
+
+[simulation]
+boundaryScheme = 'Akinci'
+verbose = false
+densityScheme = 'summation'
+scheme = 'dfsph'
+
+[pressure]
+fluidPressureTerm = 'TaitEOS'
+boundaryPressureTerm = 'PBSPH'
+gamma = 7.0
+
+[diffusion]
+velocityScheme = 'deltaSPH'
+densityScheme = 'deltaSPH'
+boundaryDiffusion = 0.01
+fluidDiffusion = 0.01
+alpha = 0.01
+kinematic = 0.01
+
+[integration]
+scheme = 'semiImplicitEuler'
+dt = 0.001
+
+[shifting]
+enabled = false
+scheme = 'deltaPlus'
+
+[kernel]
+targetNeighbors = 20
+
+[export]
+active = true
+prefix = 'dambreak'
+staticBoundary = true
+interval = 1

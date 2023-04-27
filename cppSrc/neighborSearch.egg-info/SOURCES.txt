@@ -1,0 +1,5 @@
+setup.py
+neighborSearch.egg-info/PKG-INFO
+neighborSearch.egg-info/SOURCES.txt
+neighborSearch.egg-info/dependency_links.txt
+neighborSearch.egg-info/top_level.txt
